@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Jaideep Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    background: #020617;
+    overflow-x: hidden;
+}
+
+/* CURSOR */
+#cursor {
+    position: fixed;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, rgba(56,189,248,0.25), transparent);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    filter: blur(40px);
+    z-index: 0;
+}
+
+/* CANVAS */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* NAV */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 60px;
+}
+
+.hero p {
+    max-width: 650px;
+    opacity: 0.85;
+}
+
+#graphCanvas {
+    margin-top: 20px;
+    opacity: 0.8;
+}
+
+/* BUTTON */
+.btn {
+    padding: 12px 25px;
+    margin: 10px;
+    border-radius: 25px;
+    text-decoration: none;
+    background: linear-gradient(45deg, #38bdf8, #6366f1);
+    color: white;
+    display: inline-block;
+}
+
+/* SECTION */
+section {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+/* CARDS */
+.card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    margin: 15px;
+    border-radius: 15px;
+    display: inline-block;
+    width: 280px;
+}
+
+/* SKILLS */
+.skill {
+    display: inline-block;
+    padding: 10px 15px;
+    background: rgba(255,255,255,0.1);
+    margin: 5px;
+    border-radius: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="cursor"></div>
+<canvas id="dataCanvas"></canvas>
+
+<nav>
+    <h2>Jaideep</h2>
+    <div>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <h1>Jaideep Gandi</h1>
+    <p>Data Science Graduate | Python • SQL • Machine Learning  
+    Building intelligent systems and transforming raw data into actionable insights.</p>
+
+    <canvas id="graphCanvas" width="700" height="200"></canvas>
+
+    <div>
+        <a href="#projects" class="btn">View My Work</a>
+        <a href="#contact" class="btn">Contact Me</a>
+        <a href="https://github.com/yourusername" class="btn" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/jaideep-kumar-gandi-a20200235"
+ class="btn" target="_blank">LinkedIn</a>
+    </div>
+
+    <a href="resume.pdf" class="btn">Download Resume</a>
+</section>
+
+<section id="about">
+    <h2>About Me</h2>
+    <p>I am a Data Science graduate from VBIT (JNTUH) with strong skills in Python, SQL, and Machine Learning.</p>
+    <p>I build AI-powered applications and data-driven solutions to solve real-world problems.</p>
+</section>
+
+<section>
+    <h2>Education</h2>
+    <div class="card">
+        B.Tech – Data Science<br>
+        VBIT (JNTUH)<br>
+        CGPA: 7.18
+    </div>
+</section>
+
+<section id="skills">
+    <h2>Skills</h2>
+    <div class="skill">Python</div>
+    <div class="skill">SQL</div>
+    <div class="skill">Machine Learning</div>
+    <div class="skill">Power BI</div>
+    <div class="skill">Excel</div>
+    <div class="skill">Pandas</div>
+    <div class="skill">LangChain</div>
+    <div class="skill">Streamlit</div>
+</section>
+
+<section id="projects">
+    <h2>Projects</h2>
+
+    <div class="card">
+        <h3>🔥 Fire Detection System</h3>
+        <p>Real-time fire detection using computer vision and deep learning.</p>
+        <p><b>Tech:</b> Python, OpenCV, TensorFlow</p>
+    </div>
+
+    <div class="card">
+        <h3>🤖 Gemini AI Chatbot</h3>
+        <p>Interactive chatbot with memory and real-time responses.</p>
+        <p><b>Tech:</b> Streamlit, Gemini API</p>
+    </div>
+
+    <div class="card">
+        <h3>📈 AI Investor Assistant</h3>
+        <p>AI-powered financial assistant for investment insights.</p>
+        <p><b>Tech:</b> LangChain, LLMs, yFinance</p>
+    </div>
+
+</section>
+
+<section>
+    <h2>Certifications</h2>
+    <div class="card">Microsoft Power BI Data Analyst</div>
+    <div class="card">Alteryx Data Analytics Internship</div>
+    <div class="card">Python for Data Science – Infosys</div>
+</section>
+
+<section id="contact">
+    <h2>Contact</h2>
+    <p>Email: gandijaideep@gmail.com</p>
+    <p>Phone: 7075289552</p>
+    <p>Location: Hyderabad, India</p>
+</section>
+
+<!-- CURSOR -->
+<script>
+const cursor = document.getElementById("cursor");
+window.addEventListener("mousemove", (e) => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+});
+</script>
+
+<!-- DATA BACKGROUND -->
+<script>
+const canvas = document.getElementById("dataCanvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let mouse = { x: canvas.width/2, y: canvas.height/2 };
+
+window.addEventListener("mousemove", (e) => {
+    mouse.x = e.x;
+    mouse.y = e.y;
+});
+
+let particles = [];
+
+for (let i = 0; i < 140; i++) {
+    particles.push({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        vx: (Math.random()-0.5),
+        vy: (Math.random()-0.5),
+        size: Math.random()*2+1
+    });
+}
+
+function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    // GRID
+    ctx.strokeStyle="rgba(255,255,255,0.03)";
+    for(let i=0;i<canvas.width;i+=60){
+        ctx.beginPath();
+        ctx.moveTo(i,0);
+        ctx.lineTo(i,canvas.height);
+        ctx.stroke();
+    }
+
+    for(let j=0;j<canvas.height;j+=60){
+        ctx.beginPath();
+        ctx.moveTo(0,j);
+        ctx.lineTo(canvas.width,j);
+        ctx.stroke();
+    }
+
+    particles.forEach(p=>{
+        let dx = mouse.x - p.x;
+        let dy = mouse.y - p.y;
+        let dist = Math.sqrt(dx*dx+dy*dy);
+
+        if(dist<150){
+            p.x += dx*0.015;
+            p.y += dy*0.015;
+        }
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if(p.x<0||p.x>canvas.width) p.vx*=-1;
+        if(p.y<0||p.y>canvas.height) p.vy*=-1;
+
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+        ctx.fillStyle="#38bdf8";
+        ctx.fill();
+    });
+
+    requestAnimationFrame(draw);
+}
+draw();
+</script>
+
+<!-- GRAPH -->
+<script>
+const graph = document.getElementById("graphCanvas");
+const gctx = graph.getContext("2d");
+
+let points = Array.from({length:50},()=>Math.random()*200);
+
+function drawGraph(){
+    gctx.clearRect(0,0,700,200);
+
+    gctx.beginPath();
+    gctx.moveTo(0,points[0]);
+
+    for(let i=1;i<points.length;i++){
+        gctx.lineTo(i*14,points[i]);
+    }
+
+    gctx.strokeStyle="#38bdf8";
+    gctx.lineWidth = 2;
+    gctx.stroke();
+
+    points.shift();
+    points.push(Math.random()*200);
+
+    requestAnimationFrame(drawGraph);
+}
+drawGraph();
+</script>
+
+</body>
+</html>
